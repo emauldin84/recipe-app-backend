@@ -1,0 +1,27 @@
+{
+  "name": "recipe-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "pg-promise": "^9.0.0"
+  },
+  "devDependencies": {
+    "escape-html": "^1.0.3",
+    "nodemon": "^1.19.1"
+  },
+  "scripts": {
+    "dev": "nodemon index.js",
+    "db:create": "createdb recipe-app",
+    "db:init": "psql -f schema.sql recipe-app && psql -f seed.sql recipe-app",
+    "db:destroy": "dropdb recipe-app",
+    "db:reset": "npm run db:destroy; npm run db:create && npm run db:init",
+    "test": "mocha",
+    "test:watch": "mocha -w"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
