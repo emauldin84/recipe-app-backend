@@ -10,8 +10,14 @@ async function getAllRecipes(req, res) {
     res.send(recipeArray)
 }
 
+async function getRecipesByUserId(req, req) {
+    const recipesArray = await Recipe.getRecipesByUserId('req.session.user.id  ?? JWT ??')
+    res.json(recipesArray)
+}
+
 
 module.exports = {
     getRecipeById,
-    getAllRecipes
+    getAllRecipes,
+    getRecipesByUserId
 }

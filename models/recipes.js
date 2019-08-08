@@ -9,7 +9,12 @@ class Recipe {
         this.recipe_photos = recipe_photos;
         this.user_id = user_id;
     }
-
+    
+    static getAllRecipes() {
+        return db.any(`
+        SELECT * from recipes
+        `)
+    }
     static getRecipeById(recipeId) {
         return db.one(`
         SELECT * from recipes
@@ -27,12 +32,28 @@ class Recipe {
         })
         .catch(err => err)
     }
-
-    static getAllRecipes() {
+    static getRecipesByUserId(user_Id) {
         return db.any(`
         SELECT * from recipes
-        `)
+        WHERE user_id = ${user_id};`
+        )
+        .then(recipesData => {
+            const recipesArray = recipesData.map(recipe => {
+                return (new Recipe(
+                    recipe.id,
+                    recipe.recipe_title,
+                    recipe.recipe_added_date,
+                    recipe.recipe_details,
+                    recipe.recipe_photos,
+                    recipe.user_id,
+                ))
+            })
+            console.log('reipesArray', recipesArray)
+            return recipesArray
+        })
+        .catch(err => err)
     }
+
 }
 
 module.exports = Recipe;

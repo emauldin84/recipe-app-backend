@@ -4,10 +4,12 @@ const recipesRouter = express.Router()
 const {
     getRecipeById,
     getAllRecipes,
+    getRecipesByUserId,
 } = require('../controllers/recipes')
 
-recipesRouter.get('/:id', getRecipeById)
 recipesRouter.get('/allrecipes', getAllRecipes)
+recipesRouter.get('/:id', getRecipeById)
+recipesRouter.get('/', getRecipesByUserId)
 
 
 
