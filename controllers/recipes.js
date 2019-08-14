@@ -15,9 +15,17 @@ async function getRecipesByUserId(req, req) {
     res.json(recipesArray)
 }
 
+// use req.session.user.id  ?? JWT ??
+async function addNewRecipe(req, res) {
+    console.log('req.body', req.body)
+    let newRecipe = await Recipe.addNewRecipe(req.body.title, req.body.date, req.body.details, req.body.photos, req.body.user_id)
+    res.json({newRecipe})
+}
+
 
 module.exports = {
     getRecipeById,
     getAllRecipes,
-    getRecipesByUserId
+    getRecipesByUserId,
+    addNewRecipe,
 }
