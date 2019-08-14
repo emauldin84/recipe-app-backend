@@ -11,6 +11,6 @@ create table recipes (
     recipe_title varchar(300),
     recipe_added_date date,
     recipe_details text,
-    recipe_photos text,
+    recipe_photo text,
     user_id integer references users(id)
 );

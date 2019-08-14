@@ -1,12 +1,12 @@
 const db = require('./conn')
 
 class Recipe {
-    constructor(id, recipe_title, recipe_added_date, recipe_details, recipe_photos, user_id) {
+    constructor(id, recipe_title, recipe_added_date, recipe_details, recipe_photo, user_id) {
         this.id = id;
         this.recipe_title = recipe_title;
         this.recipe_added_date = recipe_added_date;
         this.recipe_details = recipe_details;
-        this.recipe_photos = recipe_photos;
+        this.recipe_photo = recipe_photo;
         this.user_id = user_id;
     }
     
@@ -26,7 +26,7 @@ class Recipe {
                 recipe.recipe_title,
                 recipe.recipe_added_date,
                 recipe.recipe_details,
-                recipe.recipe_photos,
+                recipe.recipe_photo,
                 recipe.user_id,
             ));
         })
@@ -44,7 +44,7 @@ class Recipe {
                     recipe.recipe_title,
                     recipe.recipe_added_date,
                     recipe.recipe_details,
-                    recipe.recipe_photos,
+                    recipe.recipe_photo,
                     recipe.user_id,
                 ))
             })
@@ -55,12 +55,12 @@ class Recipe {
     }
 
     // Should create separate model to add photos?
-    static addNewRecipe(recipe_title, recipe_added_date, recipe_details, recipe_photos, user_id) {
+    static addNewRecipe(recipe_title, recipe_added_date, recipe_details, recipe_photo, user_id) {
         console.log(`adding recipe ${recipe_title}`)
         return db.one(`
-        INSERT INTO recipes (recipe_title, recipe_added_date, recipe_details, recipe_photos, user_id)
+        INSERT INTO recipes (recipe_title, recipe_added_date, recipe_details, recipe_photo, user_id)
         VALUES ($1, $2, $3, $4, $5) returning *
-        `, [recipe_title, recipe_added_date, recipe_details, recipe_photos, user_id]
+        `, [recipe_title, recipe_added_date, recipe_details, recipe_photo, user_id]
         )
     }
 
