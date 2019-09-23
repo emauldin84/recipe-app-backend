@@ -5,18 +5,18 @@ const Recipe = require('../models/recipes')
 // // set storage engine
 // const storage = multer.diskStorage({
 //     destination: (req, file, cb) => {
-//         cb(null, '/public/uploads') 
+//         cb(null, 'public/uploads/') 
 //     },
-//     filename: (req, file, cb) => {
+//     filename: function (req, file, cb) {
 //         console.log('FIIIIILE', file.originalname)
-//         cb(null, file.originalname)
+//         cb(null, `IMAGE-${Date.now()}-${file.originalname}`)
 //     }
 // })
 
 // // Init upload
 // const upload = multer({
 //     storage: storage,
-//     // limits: {fileSize: 10000000},
+//     limits: {fileSize: 10000000},
 // }).single('photo')
 
 // ====================
@@ -52,22 +52,9 @@ async function addNewRecipe(req, res) {
     // })
 }
 
-// async function uploadImage(req, res) {
-//     upload(req, res, function(err) {
-//         console.log('UPLOADING HERE...')
-//         console.log('Request ---', req.body)
-//         console.log('Request file ---', req.file)
-//         if(err) {
-//             return err
-//         }
-//     })
-// }
-
-
 module.exports = {
     getRecipeById,
     getAllRecipes,
     getRecipesByUserId,
     addNewRecipe,
-    // uploadImage,
 }
