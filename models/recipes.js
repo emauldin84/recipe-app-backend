@@ -64,6 +64,13 @@ class Recipe {
         )
     }
 
+    static editRecipe(recipe_title, recipe_details, recipe_photo, recipe_id) {
+        console.log('recipe_id', recipe_id)
+        return db.result(`
+        UPDATE recipes
+        SET recipe_title = $1, recipe_details = $2, recipe_photo = $3
+        WHERE id = $4`, [recipe_title, recipe_details, recipe_photo, recipe_id]);
+    }
 }
 
 module.exports = Recipe;

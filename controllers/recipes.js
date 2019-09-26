@@ -31,6 +31,7 @@ async function getAllRecipes(req, res) {
     res.send(recipeArray)
 }
 
+// use req.session.user.id  ?? JWT ??
 async function getRecipesByUserId(req, req) {
     const recipesArray = await Recipe.getRecipesByUserId('req.session.user.id  ?? JWT ??')
     res.json(recipesArray)
@@ -52,9 +53,15 @@ async function addNewRecipe(req, res) {
     // })
 }
 
+async function editRecipe(req, res) {
+    let editedRecipe = await Recipe.editRecipe(req.body.title, req.body.details, req.body.photo, req.params.id)
+    res.json({recipe: editedRecipe})
+}
+
 module.exports = {
     getRecipeById,
     getAllRecipes,
     getRecipesByUserId,
     addNewRecipe,
+    editRecipe
 }
