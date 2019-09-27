@@ -71,6 +71,13 @@ class Recipe {
         SET recipe_title = $1, recipe_details = $2, recipe_photo = $3
         WHERE id = $4`, [recipe_title, recipe_details, recipe_photo, recipe_id]);
     }
+
+    static deleteRecipe(recipeId) {
+        return db.result(`
+        DELETE from recipes
+        where id = ${recipeId};
+        `)
+    }
 }
 
 module.exports = Recipe;

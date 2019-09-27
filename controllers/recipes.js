@@ -58,10 +58,18 @@ async function editRecipe(req, res) {
     res.json({recipe: editedRecipe})
 }
 
+async function deleteRecipe(req, res) {
+    let deletedRecipe = Recipe.deleteRecipe(req.params.id)
+    console.log('deleted recipe: ', deletedRecipe)
+
+    res.json({message: `successfullly deleted recipe id: ${req.params.id}` })
+}
+
 module.exports = {
     getRecipeById,
     getAllRecipes,
     getRecipesByUserId,
     addNewRecipe,
-    editRecipe
+    editRecipe,
+    deleteRecipe,
 }
