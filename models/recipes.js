@@ -35,8 +35,8 @@ class Recipe {
     static getRecipesByUserId(user_Id) {
         return db.any(`
         SELECT * from recipes
-        WHERE user_id = ${user_id};`
-        )
+        WHERE user_id = ${user_Id};
+        `)
         .then(recipesData => {
             const recipesArray = recipesData.map(recipe => {
                 return (new Recipe(
