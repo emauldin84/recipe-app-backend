@@ -59,8 +59,7 @@ class Recipe {
         console.log(`adding recipe ${recipe_title}`)
         return db.one(`
         INSERT INTO recipes (recipe_title, recipe_added_date, recipe_details, recipe_photo, user_id)
-        VALUES ($1, $2, $3, $4, $5) returning *
-        `, [recipe_title, recipe_added_date, recipe_details, recipe_photo, user_id]
+        VALUES ($1, $2, $3, $4, $5) returning *`, [recipe_title, recipe_added_date, recipe_details, recipe_photo, user_id]
         )
     }
 

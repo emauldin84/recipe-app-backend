@@ -7,9 +7,9 @@ async function getAllUsers(req, res) {
 
 async function addNewUser(req, res) {
     // const newPassword = User.hashPassword(req.body.password); Use this once hashing passwords
-
-    let newUser = await User.addNewUser(req.body.first_name, req.body.last_name, req.body.email, req.body.password)
-    res.json({message: 'success', newUserId: newUser.id})
+    console.log('req.body',req.body)
+    let newUser = await User.addNewUser(req.body.first, req.body.last, req.body.email, req.body.password)
+    res.json({newUser})
 }
 
 

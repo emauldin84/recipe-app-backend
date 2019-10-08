@@ -16,9 +16,10 @@ class User {
     }
 
     static addNewUser(first_name, last_name, email, user_password) {
+        console.log('adding user', first_name)
         return db.one(`
-        INSERT into users(first_name, last_name, email, user_password)
-        VALUES($1, $2, $3, $4) return id`, [first_name, last_name, email, user_password]
+        INSERT INTO users (first_name, last_name, email, user_password)
+        VALUES($1, $2, $3, $4) returning *`, [first_name, last_name, email, user_password]
         )
     }
 }
