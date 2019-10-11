@@ -15,6 +15,42 @@ class User {
         `)
     }
 
+    static getUserById(userId) {
+        return db.one(`
+        SELECT * from users
+        WHERE id=$1
+        `, [userId])
+        .then(userData => {
+            const userInstance = new User (
+                userData.id,
+                userData.first_name,
+                userData.last_name,
+                userData.email,
+                userData.user_password,
+                )
+                return userInstance;
+            })
+        .catch(err => console.log(err))
+    }
+
+    static getUserByEmail(email) {
+        return db.one(`
+        SELECT * from users
+        WHERE email=$1
+        `, [email])
+        .then(userData => {
+            const userInstance = new User (
+                userData.id,
+                userData.first_name,
+                userData.last_name,
+                userData.email,
+                userData.user_password,
+                )
+                return userInstance;
+            })
+        .catch(err => console.log(err))
+    }
+
     static addNewUser(first_name, last_name, email, user_password) {
         console.log('adding user', first_name)
         return db.one(`

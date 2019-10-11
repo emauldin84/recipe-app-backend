@@ -12,10 +12,21 @@ async function addNewUser(req, res) {
     res.json({newUser})
 }
 
+async function getUserById(req, res) {
+    const user = await User.getUserById(req.params.id/* adds req.session... here */)
+    res.json({user})
+}
+
+async function getUserByEmail(req, res){
+    const user = await User.getUserByEmail(req.body.email /* from session here? */)
+    res.send(userInstance)
+}
 
 
 
 module.exports = {
     getAllUsers,
     addNewUser,
+    getUserById,
+    getUserByEmail,
 }
