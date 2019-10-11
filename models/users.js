@@ -46,6 +46,7 @@ class User {
                 userData.email,
                 userData.user_password,
                 )
+                console.log('from user model',userInstance)
                 return userInstance;
             })
         .catch(err => console.log(err))
