@@ -13,7 +13,7 @@ async function addNewUser(req, res) {
         req.session.user = newUser
         req.session.save()
         console.log(req.session)
-        res.json({newUser})
+        res.json(newUser)
     } else if (regAttemptUser.email){
         console.log('that email address is already registered')
         res.json({status : 401, message: 'that email address is already registered'});
@@ -31,6 +31,12 @@ async function getUserByEmail(req, res){
     res.send(user)
 }
 
+function logOut(req, res) {
+    req.session.destroy()
+}
+
+
+
 
 
 module.exports = {
@@ -38,4 +44,5 @@ module.exports = {
     addNewUser,
     getUserById,
     getUserByEmail,
+    logOut,
 }
