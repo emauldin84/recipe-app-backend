@@ -26,7 +26,7 @@ const usersRouter = require('./routes/users')
 const sessionRouter = require('./routes/session')
 app.use('/recipes', recipesRouter)
 app.use('/users', usersRouter)
-app.use('./session', sessionRouter)
+app.use('/session', sessionRouter)
 
 
 
