@@ -12,7 +12,7 @@ async function addNewUser(req, res) {
         let newUser = await User.addNewUser(req.body.first, req.body.last, req.body.email, req.body.password)
         req.session.user = newUser
         req.session.save()
-        console.log(req.session)
+        // console.log('req.session', req.session)
         res.json(newUser)
     } else if (regAttemptUser.email){
         console.log('that email address is already registered')

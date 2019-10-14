@@ -6,9 +6,12 @@ const port = process.env.PORT
 const path = require('path')
 const cors = require('cors')
 const session = require('express-session')
+const FileStore = require('session-file-store')(session)
+const helmet = require('helmet')
 
-
+app.use(helmet())
 app.use(session({
+    store: new FileStore(),
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
