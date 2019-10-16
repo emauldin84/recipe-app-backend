@@ -31,12 +31,33 @@ async function getUserByEmail(req, res){
     res.send(user)
 }
 
+async function logIn(req, res) {
+    const user = await User.getUserByEmail(req.body.email)
+    console.log('the user to log in', user)
+
+    if(!user) {
+        res.json({status: 401, message: 'incorrect email'})
+    } else {
+        const passwordVerify = user.checkPassword(req.body.password, user.userPassword)
+        console.log('req.body', req.body.password, 'user.userPassword', user.userPassword)
+        console.log('password is verified: ', passwordVerify)
+        if(passwordVerify) {
+            req.session.user = user
+            req.session.save()
+            res.json(user)
+        } else {
+            res.json({status: 401, message: 'incorrect password'})
+        }
+    }
+}
+
 function logOut(req, res) {
     req.session.destroy()
     res.json({message: `user session has been destroyed`})
 }
 
 async function sessionCheck(req, res) {
+    console.log(req.session)
     if(!req.session.user){
         console.log('no session')
         res.json({message: 'no user'})
@@ -55,5 +76,6 @@ module.exports = {
     getUserById,
     getUserByEmail,
     logOut,
+    logIn,
     sessionCheck,
 }

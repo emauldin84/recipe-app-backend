@@ -1,4 +1,5 @@
 const db = require('./conn')
+const bcrypt = require('bcrypt')
 
 class User {
     constructor(id, first_name, last_name, email, user_password) {
@@ -58,6 +59,10 @@ class User {
         INSERT INTO users (first_name, last_name, email, user_password)
         VALUES($1, $2, $3, $4) returning *`, [first_name, last_name, email, user_password]
         )
+    }
+
+    checkPassword(bodyPassword, dbPassword) {
+        return (bodyPassword === dbPassword)
     }
 }
 
