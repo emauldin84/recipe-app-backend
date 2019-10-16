@@ -10,9 +10,9 @@ const {
     deleteRecipe,
 } = require('../controllers/recipes')
 
-recipesRouter.get('/allrecipes', getAllRecipes)
+recipesRouter.get('/allrecipes', getRecipesByUserId)
 recipesRouter.get('/:id', getRecipeById)
-recipesRouter.get('/', getRecipesByUserId)
+// recipesRouter.get('/recipesbyid', getRecipesByUserId)
 recipesRouter.post('/add-new-recipe', addNewRecipe)
 recipesRouter.post('/edit/:id', editRecipe)
 recipesRouter.delete('/delete-recipe/:id', deleteRecipe)

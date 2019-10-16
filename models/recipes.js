@@ -32,10 +32,10 @@ class Recipe {
         })
         .catch(err => err)
     }
-    static getRecipesByUserId(user_Id) {
+    static getRecipesByUserId(user_id) {
         return db.any(`
         SELECT * from recipes
-        WHERE user_id = ${user_Id};
+        WHERE user_id = ${user_id};
         `)
         .then(recipesData => {
             const recipesArray = recipesData.map(recipe => {
@@ -48,7 +48,7 @@ class Recipe {
                     recipe.user_id,
                 ))
             })
-            console.log('reipesArray', recipesArray)
+            console.log('recipesArray', recipesArray)
             return recipesArray
         })
         .catch(err => err)
