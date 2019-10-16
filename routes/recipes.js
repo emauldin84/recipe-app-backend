@@ -3,7 +3,7 @@ const recipesRouter = express.Router()
 
 const {
     getRecipeById,
-    getAllRecipes,
+    // getAllRecipes,
     getRecipesByUserId,
     addNewRecipe,
     editRecipe,
