@@ -21,7 +21,7 @@
     "nodemon": "^1.19.1"
   },
   "scripts": {
-    "dev": "nodemon index.js",
+    "dev": "nodemon --ignore sessions index.js",
     "db:create": "createdb recipe-app",
     "db:init": "psql -f schema.sql recipe-app && psql -f seed.sql recipe-app",
     "db:destroy": "dropdb recipe-app",
