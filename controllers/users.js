@@ -9,7 +9,9 @@ async function addNewUser(req, res) {
     // const newPassword = User.hashPassword(req.body.password); Use this once hashing passwords
     let regAttemptUser = await User.getUserByEmail(req.body.email)
     if(!regAttemptUser) {
-        let newUser = await User.addNewUser(req.body.first, req.body.last, req.body.email, req.body.password)
+        let hashedPassword = User.hashPassword(req.body.password)
+        console.log(hashedPassword)
+        let newUser = await User.addNewUser(req.body.first, req.body.last, req.body.email, hashedPassword)
         req.session.user = newUser
         req.session.save()
         console.log('req.session', req.session.user)

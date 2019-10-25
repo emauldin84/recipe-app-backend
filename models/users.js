@@ -61,9 +61,19 @@ class User {
         )
     }
 
-    checkPassword(bodyPassword, dbPassword) {
-        return (bodyPassword === dbPassword)
+    static hashPassword(newPassword) {
+        return bcrypt.hashSync(newPassword, 10);
+    };
+
+    // switch to this checkPassword to utilize bcrypt
+    checkPassword(password, dbPassword) {
+        console.log('password', password, 'dbPassword', dbPassword)
+        return bcrypt.compareSync(password, dbPassword);
     }
+
+    // checkPassword(bodyPassword, dbPassword) {
+    //     return (bodyPassword === dbPassword)
+    // }
 }
 
 
