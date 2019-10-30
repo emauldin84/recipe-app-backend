@@ -8,6 +8,26 @@ const cors = require('cors')
 const session = require('express-session')
 const FileStore = require('session-file-store')(session)
 const helmet = require('helmet')
+// const AWS = require('aws-sdk')
+
+// const s3 = new AWS.S3({
+//     accessKeyId: process.env.AWS_KEY_ID,
+//     secretAccessKey: AWS_ACCESS_KEY,
+// });
+
+// const params = {
+//     Bucket: 'cs-recipes-bucket',
+//     CreateBucketConfiguration: {
+//         // Set your region here
+//         // LocationConstraint: "eu-west-1"
+//     }
+// };
+
+// s3.createBucket(params, function(err, data) {
+//     if (err) console.log(err, err.stack);
+//     else console.log('Bucket Created Successfully', data.Location);
+// });
+
 
 app.use(helmet())
 app.use(session({
