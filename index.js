@@ -53,3 +53,11 @@ app.use('/session', sessionRouter)
 app.listen(port), () => {
     console.log(`Server listening on port ${port}`)
 }
+
+app.get('/*', function(req, res) {
+    res.sendFile(path.join(__dirname, './public/index.html'), function(err) {
+        if (err) {
+            res.status(500).send(err)
+        } 
+    })
+})
