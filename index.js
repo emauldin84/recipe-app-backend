@@ -43,7 +43,7 @@ app.use(session({
         secure: IN_PROD,
         sameSite: true,
     },
-    rolling: true,
+    // rolling: true,
 }))
 app.use(express.json());
 app.use(cors())

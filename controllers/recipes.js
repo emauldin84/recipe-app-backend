@@ -13,7 +13,7 @@ async function getAllRecipes(req, res) {
 
 // use req.session.user.id  ?? JWT ??
 async function getRecipesByUserId(req, res) {
-    console.log('SESSION USER ID',req.session.user.id)
+    // console.log('SESSION USER ID',req.session.user.id)
     const recipesArray = await Recipe.getRecipesByUserId(req.session.user.id)
     res.send(recipesArray)
 }

@@ -47,7 +47,8 @@ async function logIn(req, res) {
             req.session.user = user
             req.session.save()
             console.log('REQ.SESSION.ID', req.session.id)
-            res.json({userId: user.id, token: req.session.id, verified: passwordVerify})
+            console.log('REQ.SESSION.USER.ID', req.session.user.id)
+            res.json({userId: user.id, verified: passwordVerify})
         } else {
             res.json({status: 401, message: 'incorrect password'})
         }
