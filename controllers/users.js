@@ -46,7 +46,8 @@ async function logIn(req, res) {
         if(passwordVerify) {
             req.session.user = user
             req.session.save()
-            res.json(user)
+            console.log('REQ.SESSION.ID', req.session.id)
+            res.json({userId: user.id, token: req.session.id, verified: passwordVerify})
         } else {
             res.json({status: 401, message: 'incorrect password'})
         }
@@ -66,7 +67,8 @@ async function sessionCheck(req, res) {
     }
     if(req.session && req.session.user && req.session.user.id){
         const user = await User.getUserById(req.session.user.id)
-        res.send(user)
+        const id = user.id ? user.id : null
+        res.json({id:id})
     }
 }
 

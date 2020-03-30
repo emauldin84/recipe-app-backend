@@ -48,7 +48,7 @@ class Recipe {
                     recipe.user_id,
                 ))
             })
-            console.log('recipesArray', recipesArray)
+            // console.log('recipesArray', recipesArray)
             return recipesArray
         })
         .catch(err => err)
