@@ -44,11 +44,15 @@ async function logIn(req, res) {
         console.log('req.body', req.body.password, 'user.userPassword', user.userPassword)
         console.log('password is verified: ', passwordVerify)
         if(passwordVerify) {
+            //
+            //IS REQ.SESSION.USER being set below??
+            //SEND req.session.user.id from live site to test below
+            //
             req.session.user = user
-            req.session.save()
+            req.session.save()  
             console.log('REQ.SESSION.ID', req.session.id)
             console.log('REQ.SESSION.USER.ID', req.session.user.id)
-            res.json({userId: user.id, verified: passwordVerify})
+            res.json({userId: req.session.user.id, verified: passwordVerify})
         } else {
             res.json({status: 401, message: 'incorrect password'})
         }
