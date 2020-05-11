@@ -35,6 +35,7 @@ class User {
     }
 
     static getUserByEmail(email) {
+        console.log('getting user by email')
         return db.one(`
         SELECT * from users
         WHERE email=$1
