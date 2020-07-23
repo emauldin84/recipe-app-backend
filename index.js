@@ -30,8 +30,8 @@ const helmet = require('helmet')
 
 
 app.use(helmet())
-// const { NODE_ENV = 'development' } = process.env
-// const IN_PROD = NODE_ENV === 'production'
+const { NODE_ENV } = process.env
+const IN_PROD = NODE_ENV === 'production'
 app.use(session({
     store: new FileStore({logFn: function(){}}),
     secret: process.env.SECRET,
@@ -40,7 +40,7 @@ app.use(session({
     cookie: {
         httpOnly: true,
         maxAge: 1800000 /* half hour */,
-        secure: process.env.NODE_ENV === "production",
+        secure: IN_PROD,
         sameSite: true,
     },
     // rolling: true,
