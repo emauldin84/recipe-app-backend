@@ -32,19 +32,24 @@ const helmet = require('helmet')
 app.use(helmet())
 const { NODE_ENV } = process.env
 const IN_PROD = NODE_ENV === 'production'
-app.use(session({
-    store: new FileStore({logFn: function(){}}),
-    secret: process.env.SECRET,
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-        httpOnly: true,
-        maxAge: 1800000 /* half hour */,
-        secure: IN_PROD,
-        sameSite: true,
-    },
-    // rolling: true,
-}))
+// app.use(session({
+//     store: new FileStore({logFn: function(){}}),
+//     secret: process.env.SECRET,
+//     resave: false,
+//     saveUninitialized: false,
+//     cookie: {
+//         httpOnly: true,
+//         maxAge: 1800000 /* half hour */,
+//         secure: IN_PROD,
+//         sameSite: true,
+//     },
+//     // rolling: true,
+// }))
+app.use(session( {
+    store: new FileStore(),
+    secret: process.env.SECRET
+}
+));
 app.use(express.json());
 app.use(cors())
 app.use(express.static(path.join(__dirname, 'public')))
